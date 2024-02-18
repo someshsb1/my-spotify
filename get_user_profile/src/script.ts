@@ -2,7 +2,7 @@
 // we detect a callback from Spotify by checking for the hash fragment
 import { redirectToAuthCodeFlow, getAccessToken } from "./authCodeWithPkce";
 
-const clientId = "your_client_id";
+const clientId = "1c69b6f7d2f34f9da79c7e0406e9b287";
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
@@ -14,9 +14,9 @@ if (!code) {
     populateUI(profile);
 }
 
-async function fetchProfile(code: string): Promise<UserProfile> {
+async function fetchProfile(token: string): Promise<UserProfile> {
     const result = await fetch("https://api.spotify.com/v1/me", {
-        method: "GET", headers: { Authorization: `Bearer ${code}` }
+        method: "GET", headers: { Authorization: `Bearer ${token}` }
     });
 
     return await result.json();
